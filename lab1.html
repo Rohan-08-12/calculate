@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 3 - Rohan</title>
+</head>
+<body>
+
+
+    <script>
+        function convertKgToLb(kg) {   // func to convert to lb
+            return kg / 0.45359237;
+        }
+
+        function convertLbToKg(lb) {  // func to convert to kg
+            return lb * 0.45359237;
+        }
+
+        let choice;
+        do {
+            let value = 0; // Initialize value 
+            do {
+                choice = prompt("Input 1 for converting kg to lb, or input 2 for converting lb to kg, or input 3 to exit");
+                
+                if (choice === null) {  // If user presses cancel
+                    document.write("<p>Operation canceled</p>");
+                    break;
+                }
+                
+                choice = parseInt(choice);  // Convert input to integer
+                
+                if (![1, 2, 3].includes(choice)) {  // If input is not 1, 2, or 3
+                    alert("Invalid input. Please enter 1, 2, or 3 only.");
+                }
+            } while (![1, 2, 3].includes(choice));  // Loop until input is 1, 2, or 3
+            
+            if (choice === 1 || choice === 2) {  // If input is 1 or 2
+                do {
+                    value = parseFloat(prompt("Enter weight value:"));
+                    if (isNaN(value) || value <= 0) {
+                        alert("Invalid input. Please enter a valid numeric value greater than 0.");
+                    }
+                } while (isNaN(value) || value <= 0);  // Loop until valid input
+                
+                switch (choice) {  // Switch case
+                    case 1://convert kg to lb
+                        let lb = convertKgToLb(value);
+                        document.write(`<p>${value} kg is equal to ${lb.toFixed(2)} lb</p>`);  //toFixed(2) to round to 2 decimal places
+                        break;
+                    case 2:  //convert lb to kg
+                        let kg = convertLbToKg(value);
+                        document.write(`<p>${value} lb is equal to ${kg.toFixed(2)} kg</p>`);  //toFixed(2) to round to 2 decimal places
+                        break;
+                }
+                break; // Exit loop after a conversion
+            }
+        } while (choice !== 3); //to exit if user enters 3
+
+        document.write("<p>Goodbye!</p>");
+    </script>
+</body>
+</html>
